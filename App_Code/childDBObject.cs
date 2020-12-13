@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Data;
+using System.Web;
+using System.Web.UI;
 
 /// <summary>
 /// Class childDBObject derives from class parentDBObject

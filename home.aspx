@@ -107,7 +107,7 @@
 				<a href="#" class="nav-link">
 				  <i class="nav-icon fa fa-money text-info"></i>
 				  <p>
-					Gross Income
+					Income
 					<i class="right fa fa-angle-left"></i>
 				  </p>
 				</a>
@@ -196,7 +196,7 @@
 				<li class="nav-item">
 					<a href="starts/log.aspx" class="nav-link">
 					  <i class="fa fa-play-circle nav-icon text-info"></i>
-					  <p>Starts Log</p>
+					  <p>Starts</p>
 					</a>
 				</li>				
 				<hr>
@@ -512,13 +512,13 @@
 									<div class="col-12">
 										<div class="row">
 											<div class="col-12">
-												<h1 class="m-0 text-dark">Gross Income</h1>
+												<h1 class="m-0 text-dark">Income</h1>
 												<asp:Label id="OrgText" visible="false" runat="server" Text="Combined" />												
 											</div>
 											<div class="col-6 text-info">
-												<h5>Invoiced GI</br>
+												<h5>Invoiced</br>
 												In/Confirmed</br>
-												Last Week GI </h5>
+												Last Week</h5>
 											</div>
 											<div class="col-6 text-info">
 												<h5><asp:Label id="CardInvoiced" runat="server" /></br>

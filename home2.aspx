@@ -107,7 +107,7 @@
 				<a href="#" class="nav-link">
 				  <i class="nav-icon fa fa-money text-info"></i>
 				  <p>
-					Gross Income
+					Income
 					<i class="right fa fa-angle-left"></i>
 				  </p>
 				</a>
@@ -560,7 +560,7 @@
 									<div class="col-12">
 										<div class="row">
 											<div class="col-12">
-												<h1 class="m-0 text-dark">Gross Income</h1>
+												<h1 class="m-0 text-dark">Income</h1>
 												<asp:Label id="OrgText" visible="false" runat="server" Text="Combined" />												
 											</div>
 											<div class="col-6 text-info">

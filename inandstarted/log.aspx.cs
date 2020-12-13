@@ -1,15 +1,18 @@
 using System;
-
+using System.Data;
+using System.Data.SqlClient;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Linq;
 using System.Globalization;
 using System.Threading;
 using System.IO;
-
 using OfficeOpenXml;
 
-public partial class Default : System.Web.UI.Page 
-{  	
+public partial class _Default : System.Web.UI.Page
+{
 
-    dal DAL = new dal();
+	dal DAL = new dal();
 
 	static string searchText;
 	static string searchCol;
@@ -93,7 +96,7 @@ public partial class Default : System.Web.UI.Page
 		PopulateAreas();
 	}
 
-	private void GridView_Load(GridView grdview, DataTable dt)
+    private void GridView_Load(GridView grdview, DataTable dt)
 	{	
 
 		string sortDir = ViewState["SortDirection"] as string;
