@@ -57,7 +57,7 @@
 		<!-- Brand Logo -->
 		<a href="../home.aspx" class="brand-link">
 		  <img src="../img/scn_sm.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-		  <span class="brand-text font-weight-light">PUBLIC TRACKING</span>
+		  <span class="brand-text font-weight-light">FLOW</span>
 		</a>
 	  <div class="btn-group btn-group-sm btn-block">
 		<a class="btn btn-default" onserverclick="Day_Click" id="day" runat="server" >Day</a>

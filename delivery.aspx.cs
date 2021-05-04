@@ -31,7 +31,7 @@ public partial class _Default : System.Web.UI.Page
 
 		if(!IsPostBack)
 		{
-			Title = "Public Tracking";
+			Title = "FLOW";
 			if (Session["org"] == "Day") {
 				OrgText.Text = Session["org"].ToString();
 				OrgText2.Text = Session["org"].ToString();

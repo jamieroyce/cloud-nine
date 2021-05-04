@@ -98,7 +98,7 @@
 		<a href="../home.aspx" class="brand-link">
 		  <img src="../img/scn_sm.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
 			   style="opacity: .8">
-		  <span class="brand-text font-weight-light">PUBLIC TRACKING</span>
+		  <span class="brand-text font-weight-light">FLOW</span>
 		</a>
 
 	  <div class="btn-group btn-group-sm btn-block">
@@ -241,10 +241,12 @@
 					<div class="small-box bg-info-gradient">
 					<!-- <div class="info-box"> -->
 					  <div class="info-box-content">
-						<span class="info-box-number">INVOICED</span>
+						<span class="info-box-number">
+							<asp:Label id="Title1" runat="server" />
+						</span>
 						<span class="info-box-text">
 						<h3>
-							<asp:Label id="CardInvoiced" runat="server" />
+							<asp:Label id="Card1" runat="server" />
 						</h3>
 						</span>
 						<span class="progress-description">
@@ -262,7 +264,9 @@
 				  <div class="col-3">
 					<div class="small-box bg-info-gradient">
 					  <div class="info-box-content">
-						<span class="info-box-number">CONFIRMED</span>
+						<span class="info-box-number">
+							<asp:Label id="Title2" runat="server" />
+						</span>
 						<span class="info-box-text">
 							<h3><asp:Label id="CardConfirmed" runat="server" /></h3>
 						</span>
@@ -281,7 +285,9 @@
 				  <div class="col-3">
 					<div class="small-box bg-info-gradient">
 					  <div class="info-box-content">
-						<span class="info-box-number">IN & CONFIRMED</span>
+						<span class="info-box-number">
+							<asp:Label id="Title3" runat="server" />
+						</span>
 						<span class="info-box-text">
 							<h3>
 							<asp:Label id="CardInConfirmed" runat="server" />
@@ -302,7 +308,9 @@
 				  <div class="col-3">
 					<div class="small-box bg-info-gradient">
 					  <div class="info-box-content">
-						<span class="info-box-number">IN/CONF/LINED UP</span>
+						<span class="info-box-number">
+							<asp:Label id="Title4" runat="server" />
+						</span>
 						<span class="info-box-text">
 							<h3><asp:Label id="CardInConfirmedA" runat="server" /></h3>
 						</span>
@@ -313,6 +321,49 @@
 							<asp:Label id="CardInConfirmedFdnA" runat="server" /> 
 						</span>
 					  </div>
+
+					  <!-- /.info-box-content -->
+					</div>
+					<!-- /.info-box -->
+				  </div>
+				  <div class="col-3" hidden>
+					<div class="small-box bg-info-gradient">
+					  <div class="info-box-content">
+						<span class="info-box-number">
+							<asp:Label id="Title5" runat="server" />
+						</span>
+						<span class="info-box-text">
+							<h3><asp:Label id="Label2" runat="server" /></h3>
+						</span>
+						<span class="progress-description">
+							<asp:Label id="Label3" runat="server" /> 
+						</span>
+						<span class="progress-description">
+							<asp:Label id="Label4" runat="server" /> 
+						</span>
+					  </div>
+
+					  <!-- /.info-box-content -->
+					</div>
+					<!-- /.info-box -->
+				  </div>
+				  <div class="col-3" hidden>
+					<div class="small-box bg-info-gradient">
+					  <div class="info-box-content">
+						<span class="info-box-number">
+							<asp:Label id="Title6" runat="server" />
+						</span>
+						<span class="info-box-text">
+							<h3><asp:Label id="Label6" runat="server" /></h3>
+						</span>
+						<span class="progress-description">
+							<asp:Label id="Label7" runat="server" /> 
+						</span>
+						<span class="progress-description">
+							<asp:Label id="Label8" runat="server" /> 
+						</span>
+					  </div>
+
 					  <!-- /.info-box-content -->
 					</div>
 					<!-- /.info-box -->

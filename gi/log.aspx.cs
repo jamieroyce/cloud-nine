@@ -1255,7 +1255,14 @@ public partial class _Default : System.Web.UI.Page
 		BothFigureLbl.Text = "";
 
 		PopulateLine();
-		
+
+		string title1;
+		string title2;
+		string title3;
+		string title4;
+		string title5;
+		string title6;
+
 		try // TOTALS
 		{
 			var query = from c in dataTable.AsEnumerable() 
@@ -1277,7 +1284,16 @@ public partial class _Default : System.Web.UI.Page
 			string ResultFdnOn = "0";
 			string ResultFdnConf = "0";
 			string ResultFdnInv = "0";
-					  
+
+			// CONFIG
+			var title1Sql = "SELECT name from config WHERE type = 'title' and seq = 1";
+			var title2Sql = "SELECT name from config WHERE type = 'title' and seq = 2";
+			var title3Sql = "SELECT name from config WHERE type = 'title' and seq = 3";
+			var title4Sql = "SELECT name from config WHERE type = 'title' and seq = 4";
+			var title5Sql = "SELECT name from config WHERE type = 'title' and seq = 5";
+			var title6Sql = "SELECT name from config WHERE type = 'title' and seq = 6";
+
+
 			var cmd1 = "SELECT SUM(amount) AS total from reg WHERE (status = 'GI Invoiced' or status = 'GI Confirmed') and reg_cat_id <> 'Archive'";
 			var cmdInv = "SELECT SUM(amount) AS total from reg WHERE status = 'GI Invoiced' and reg_cat_id <> 'Archive'";
 			var cmdConf = "SELECT SUM(amount) AS total from reg WHERE status = 'GI Confirmed' and reg_cat_id <> 'Archive'";
@@ -1387,12 +1403,48 @@ public partial class _Default : System.Web.UI.Page
 					ResultFdnOn = String.Format("{0:C0}", Cmd.ExecuteScalar());
 					}
 				}
-				catch{}						
+				catch{}
+				try
+				{
+					using (SqlCommand Cmd = new SqlCommand(title1Sql, conn))
+					{
+						title1 = String.Format("{0:C0}", Cmd.ExecuteScalar());
+						Title1.Text = title1;
+					}
+					using (SqlCommand Cmd = new SqlCommand(title2Sql, conn))
+					{
+						title2 = String.Format("{0:C0}", Cmd.ExecuteScalar());
+						Title2.Text = title2;
+					}
+					using (SqlCommand Cmd = new SqlCommand(title3Sql, conn))
+					{
+						title3 = String.Format("{0:C0}", Cmd.ExecuteScalar());
+						Title3.Text = title3;
+					}
+					using (SqlCommand Cmd = new SqlCommand(title4Sql, conn))
+					{
+						title4 = String.Format("{0:C0}", Cmd.ExecuteScalar());
+						Title4.Text = title4;
+					}
+					using (SqlCommand Cmd = new SqlCommand(title5Sql, conn))
+					{
+						title5 = String.Format("{0:C0}", Cmd.ExecuteScalar());
+						Title5.Text = title5;
+					}
+					using (SqlCommand Cmd = new SqlCommand(title6Sql, conn))
+					{
+						title6 = String.Format("{0:C0}", Cmd.ExecuteScalar());
+						Title6.Text = title6;
+					}
+				}
+				catch { }
 				conn.Close();
-			}			
+			}
+
+
 			//if day fdn combined handling
-			if(OrgText.Text=="Combined"){
-				CardInvoiced.Text = ResultBothInv;		
+			if (OrgText.Text=="Combined"){
+				Card1.Text = ResultBothInv;		
 				CardConfirmed.Text = ResultBothConf;		
 				CardInConfirmed.Text = ResultBothIn;	
 				CardInConfirmedA.Text = ResultBothOn;
@@ -1407,7 +1459,7 @@ public partial class _Default : System.Web.UI.Page
 				CardInConfirmedFdnA.Text = ResultFdnOn + " (Fdn)";
 				
 			} else if (OrgText.Text=="Day"){
-				CardInvoiced.Text = ResultDayInv ;				
+				Card1.Text = ResultDayInv ;				
 				CardConfirmed.Text = ResultDayConf ;	
 				CardInConfirmed.Text = ResultDayIn ;				
 				CardInConfirmedA.Text = ResultDayOn ;
@@ -1422,7 +1474,7 @@ public partial class _Default : System.Web.UI.Page
 				CardInConfirmedFdnA.Text = "";				
 				
 			} else if (OrgText.Text=="Fdn"){
-				CardInvoiced.Text = ResultFdnInv ;	
+				Card1.Text = ResultFdnInv ;	
 				CardConfirmed.Text = ResultFdnConf ;
 				CardInConfirmed.Text = ResultFdnIn ;	
 				CardInConfirmedA.Text = ResultFdnOn ;

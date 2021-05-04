@@ -683,7 +683,18 @@ public partial class _Default : System.Web.UI.Page
 			string ResultFdnOn = "0";
 			string ResultFdnConf = "0";
 			string ResultFdnInv = "0";
-					  
+
+
+			// CONFIG
+			var title1 = "SELECT name from config WHERE type = 'title' and seq = 2";
+			var title2 = "SELECT name from config WHERE type = 'title' and seq = 2";
+			var title3 = "SELECT name from config WHERE type = 'title' and seq = 3";
+			var title4 = "SELECT name from config WHERE type = 'title' and seq = 4";
+			var title5 = "SELECT name from config WHERE type = 'title' and seq = 5";
+			var title6 = "SELECT name from config WHERE type = 'title' and seq = 6";
+
+
+
 			var cmd1 = "SELECT SUM(amount) AS total from reg WHERE (status = 'GI Invoiced' or status = 'GI Confirmed') and reg_cat_id <> 'Archive'";
 			var cmdInv = "SELECT SUM(amount) AS total from reg WHERE status = 'GI Invoiced' and reg_cat_id <> 'Archive'";
 			var cmdConf = "SELECT SUM(amount) AS total from reg WHERE status = 'GI Confirmed' and reg_cat_id <> 'Archive'";
@@ -797,7 +808,9 @@ public partial class _Default : System.Web.UI.Page
 				conn.Close();
 				}			
 			CardInConfirmed.Text = ResultBothIn;				
-			CardInvoiced.Text = ResultBothInv;		
+			Card1.Text = ResultBothInv;	
+			Title1.Text = title1;	
+			
 			CardConfirmed.Text = ResultBothConf;		
 			CardInConfirmedA.Text = ResultBothOn;
 

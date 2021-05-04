@@ -13,7 +13,7 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="refresh" content="300">
 	
-	<title>Public Tracking</title>
+	<title>FLOW</title>
 
 		<link rel="stylesheet" href="css/all.min.css" type="text/css"  />
 		<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -66,7 +66,7 @@
 	<!-- Right navbar links -->
 	<ul class="navbar-nav ml-auto">
 	  <li class="nav-item">
-		<a href="Public Tracking System Manual.docx" class="nav-link">	  
+		<a href="FLOW System Manual.docx" class="nav-link">	  
 		  <i class="fa fa-question fa-lg text-info" title="Refresh"></i>
 		</a>
 	  </li>	  
@@ -90,7 +90,7 @@
 		<a href="home.aspx" class="brand-link">
 		  <img src="img/scn_sm.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
 			   style="opacity: .8">
-		  <span class="brand-text font-weight-light">PUBLIC TRACKING</span>
+		  <span class="brand-text font-weight-light">FLOW</span>
 		</a>
 	  <div class="btn-group btn-group-sm btn-block">
 		<a class="btn btn-default" onserverclick="Day_Click" id="day" runat="server" >Day</a>
@@ -1130,7 +1130,7 @@
 						</div>
 					</div>
 				</div>									
-				<p class="text-right">Public Tracking System / Version 2.1 / JSR / 16 Nov 2018</p>
+				<p class="text-right">FLOW System / Version 2.1 / JSR / 16 Nov 2018</p>
 				<asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server"></asp:ScriptManager>
 				<asp:Label visible="false" id="HeadText" style="padding-left:15px" runat="server" />
 			</div>

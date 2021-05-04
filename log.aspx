@@ -68,7 +68,7 @@
 		<a href="../home.aspx" class="brand-link">
 		  <img src="../img/scn_sm.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
 			   style="opacity: .8">
-		  <span class="brand-text font-weight-light">PUBLIC TRACKING</span>
+		  <span class="brand-text font-weight-light">FLOW</span>
 		</a>
 
 	  <div class="btn-group btn-group-sm btn-block">
@@ -202,10 +202,12 @@
 					<div class="small-box bg-info-gradient">
 					<!-- <div class="info-box"> -->
 					  <div class="info-box-content">
-						<span class="info-box-number">INVOICED</span>
+						<span class="info-box-number">
+							<asp:Label id="Title1" runat="server" />
+						</span>
 						<span class="info-box-text">
 						<h3>
-							<asp:Label id="CardInvoiced" runat="server" />
+							<asp:Label id="Card1" runat="server" />
 						</h3>
 						</span>
 						<span class="progress-description">
