@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-	<title>Setup Users</title>
+	<title>Configure Settings</title>
 
 	<link rel="stylesheet" href="../css/font-awesome.min.css">
 	<link rel="stylesheet" href="../css/adminlte.css">
@@ -33,7 +33,7 @@
     </ul>
 	<ul class="navbar-nav ml-auto">
 	  <li class="nav-item">
-		<a href="registrars.aspx" class="nav-link">	  
+		<a href="config.aspx" class="nav-link">	  
 		  <i class="fa fa-refresh fa-lg text-info" title="Refresh"></i>
 		</a>
 	  </li>	  
@@ -151,7 +151,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="../home.aspx">Home</a></li>
-              <li class="breadcrumb-item active">Registrars</li>
+              <li class="breadcrumb-item active">Config</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -276,6 +276,88 @@
 						</div>
 					</div>
 				</div>
+			</div>							
+		</div>
+    </section>
+    <section class="content">
+		<div class="container-fluid">
+			<!-- MAIN -->
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-12">
+					<div class="card">		
+						<div class="card-body">
+							<div class="row">
+								<div class="col-10">
+									<b>Info:</b> Set the Expectancy Quotas by Area. This will be used in the Delivery View. 
+								</div>
+								<div class="col-2">
+									<button type="button" id="btnAddQuota" runat="server" class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#addQuotaModal">Add</button>												
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>				
+			<div class="row">
+				<div class="col-md-6 col-sm-12 col-6">
+					<div class="card">		
+						<div class="card-body">
+						<div id="gridviewQuota" 	runat="server">
+							<div class="row">  
+								<div class="col-lg-12 ">  
+									<div class="table-responsive">  
+									<asp:GridView 
+										ID="GridViewExpectancy" 
+										runat="server" 
+										AutoGenerateColumns="false" 
+										DataKeyNames="id" 
+										OnSorting="TaskGridView_Sorting" 
+										BorderWidth="0" 
+										CellPadding="0" 
+										CssClass="mGridAppt"
+										GridLines="None" 
+										Width="100%"											
+										EmptyDataText="No records has been added.">
+										<Columns>					
+											<asp:BoundField DataField="ID" HeaderText="ID" >
+												<HeaderStyle CssClass="no-display"></HeaderStyle>
+											<ItemStyle CssClass="no-display"></ItemStyle>
+											</asp:BoundField>
+											<asp:TemplateField visible="True" HeaderText="RegNo">
+												<ItemTemplate>
+													<asp:DropDownList id="area" AutoPostBack="True" OnSelectedIndexChanged="Selection_Change_Area" runat="server" 
+														CssClass="col_xs" SelectedValue='<%# Eval("area") %>' TabIndex='<%# TabIndex %>'>
+														<asp:ListItem Value="div6"> DIV6 </asp:ListItem>
+														<asp:ListItem Value="purif"> PURIF </asp:ListItem>
+														<asp:ListItem Value="srd"> SRD </asp:ListItem>
+														<asp:ListItem Value="hgc"> HGC </asp:ListItem>
+														<asp:ListItem Value="acad"> ACAD </asp:ListItem>
+														<asp:ListItem Value="gak"> GAK </asp:ListItem>
+											</asp:DropDownList>
+												</ItemTemplate>
+												<ControlStyle Width="100%" />								
+											</asp:TemplateField>																						
+											<asp:TemplateField SortExpression="desc2" HeaderText="Quota">
+												<ItemTemplate>
+													<asp:TextBox ID="full_name" AutoPostBack="True" CssClass="col_med" runat="server" Text='<%# Eval("desc2") %>' Width=150 OnTextChanged="text_change_desc2" />
+												</ItemTemplate>
+												<ControlStyle Width="100%" />								
+											</asp:TemplateField>	
+											<asp:TemplateField>
+												<ItemTemplate>
+													<asp:LinkButton ID="lnkBtnDelete" class="btn btn-outline-danger btn-sm col-12" runat="server" Text="Delete" 
+													OnClick="DeleteRow"></asp:LinkButton>
+												</ItemTemplate>						
+											</asp:TemplateField>
+										</Columns>
+									</asp:GridView>
+									</div> 
+								</div>  
+							</div>  
+						</div>	
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6 col-sm-6 col-12">
@@ -289,7 +371,7 @@
 				</div>
 			</div>							
 		</div>
-    </section>
+    </section>	
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -300,9 +382,10 @@
 		<asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server"></asp:ScriptManager>
 	</div>
 </div>
+
 	<div id="delConfReg" class="modal fade">
 		<script type="text/javascript">
-			function ConfirmDeleteModal() {
+			function ConfirmDeleteRegModal() {
 				$('[id*=delConfReg]').modal('show');
 			} 
 		</script>
@@ -327,6 +410,33 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->		
+	<div id="delConfExpectancy" class="modal fade">
+		<script type="text/javascript">
+			function ConfirmDeleteQuotaModal() {
+				$('[id*=delConfExpectancy]').modal('show');
+			} 
+		</script>
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-danger">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Warning!</h3>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+								<p> Are you <b>sure</b> you want to delete this Quota from the  list?</p>
+								<asp:TextBox ID="QuotaID" type="hidden" runat="server" Text="" ></asp:TextBox>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+								<asp:Button ID="btnDeleteExpectancy" OnClientClick="<% %>" class="btn btn-primary" runat="server" Text="Delete" CommandArgument='<%# Eval("Id") %>' OnCommand="btnDeleteExpectancy_Click" />
+							</div>							
+						</div>
+					</div>
+				</div><!-- /.modal-body -->
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->			
 	<div id="addRegModal" class="modal fade" tabindex="-1" method="POST" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<script type="text/javascript">
 			$(document).ready(function () {
@@ -416,6 +526,64 @@
 				</div>	
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
+		<div id="addQuotaModal" class="modal fade" tabindex="-1" method="POST" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<script type="text/javascript">
+				$(document).ready(function () {
+					$('#addQuotaModal').on('hidden.bs.modal', function (e) {
+						$('#shortID').val('');
+						$('#postID').val('');
+					});
+				});
+			</script>
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h3 class="modal-title" id="addModalTitle">Add Reg</h3>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-12">
+	
+									<div class="row" >
+										<label class="col-sm-4 control-label" for="textinput">Area</label>
+										<div class="col-sm-8">
+											<asp:DropDownList id="shortID" runat="server" CssClass="form-control"
+												SelectedValue='<%# Eval("shortID") %>'>
+													<asp:ListItem Value="div6"> DIV6 </asp:ListItem>
+													<asp:ListItem Value="purif"> PURIF </asp:ListItem>
+													<asp:ListItem Value="srd"> SRD </asp:ListItem>
+													<asp:ListItem Value="hgc"> HGC </asp:ListItem>
+													<asp:ListItem Value="acad"> ACAD </asp:ListItem>
+													<asp:ListItem Value="gak"> GAK </asp:ListItem>
+											</asp:DropDownList>
+										</div>
+									</div>
+									<div class="row" >
+										<label class="col-sm-4 control-label" for="textinput">Quota</label>
+										<div class="col-sm-8">
+											<asp:TextBox ID="quotaID2" name="quotaID2" runat="server" Text="" CssClass="form-control" style="width=100%" ></asp:TextBox>
+										</div>
+									</div>
+								</div>
+	
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<br />
+							</div>
+						</div>					
+						<div class="modal-footer">
+							<div class="row">
+								<div class="col-md-12">
+									<asp:Button ID="btnSubmitQuota" OnClientClick="<% %>" class="btn btn-info" runat="server" Text="Save" CommandArgument='<%# Eval("Id") %>' OnCommand="btnAddQuota_Click" />
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->		
 	</div><!-- /.modal -->			
 	<script type="text/javascript" src="../js/jquery-1.12.4.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../js/jquery-ui.js" charset="UTF-8"></script>

@@ -12,7 +12,7 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="refresh" content="1000">
 	
-	<title>Gross Income</title>
+	<title>Production Board</title>
 
 	<link rel="stylesheet" href="../css/font-awesome.min.css" />
 	<link rel="stylesheet" href="../css/adminlte.css" />
@@ -101,7 +101,7 @@
 		  <span class="brand-text font-weight-light">FLOW</span>
 		</a>
 
-	  <div class="btn-group btn-group-sm btn-block">
+	  <div class="btn-group btn-group-sm btn-block" hidden>
 		<a class="btn btn-default" onserverclick="Day_Click" id="day" runat="server" >Day</a>
 		<a class="btn btn-default" onserverclick="Fdn_Click" id="fdn" runat="server" >Fdn</a>
 		<a class="btn btn-default btn-block" onserverclick="Combined_Click" id="cmb" runat="server" >Combined</a>
@@ -119,7 +119,7 @@
 				<a href="log.aspx" class="nav-link" >
 				  <i class="nav-icon fa fa-address-card text-info"></i>
 				  <p>
-					GI Log
+					Log
 				  </p>
 				</a>
 				<li class="nav-item">
@@ -216,12 +216,12 @@
 				<h1 class="m-0 text-dark">
 					<asp:Label id="HeaderText" runat="server" />								
 				</h1>
-				<asp:Label visible="false" id="OrgText" runat="server" Text="Combined" />				
+				<asp:Label visible="false" id="OrgText" hidden runat="server"/>				
 			  </div><!-- /.col -->
 			  <div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
 				  <li class="breadcrumb-item"><a href="../home.aspx">Home</a></li>
-				  <li class="breadcrumb-item active">GI Log</li>
+				  <li class="breadcrumb-item active">Log</li>
 				</ol>
 			  </div><!-- /.col -->
 			</div><!-- /.row -->
@@ -371,7 +371,7 @@
 				  <!-- /.col -->
 				</div>
 				<!-- /.row -->	
-				<div class="row no-print">						
+				<div class="row no-print" hidden >						
 				  <div class="col-md-2">
 						<asp:LinkButton runat="server" CommandArgument="Resign" OnClick="LinkButton_Command">					
 						<div class="small-box bg-default-gradient">
@@ -606,6 +606,9 @@
 						<div class="card">		
 							<div class="card-body">
 								<div class="row">
+									<div class="col-4">
+										<asp:TextBox ID="txtGI" CssClass="form-control form-control-md" runat="server"></asp:TextBox>
+									</div>				
 									<div class="col-3">
 										<asp:DropDownList id="ddlSearchGI" CssClass="form-control form-control-md" runat="server">
 										<asp:ListItem Value="Name"> Name </asp:ListItem>
@@ -615,16 +618,13 @@
 										<asp:ListItem Value="Line"> Line </asp:ListItem>
 										</asp:DropDownList>  
 									</div>				
-									<div class="col-4">
-										<asp:TextBox ID="txtGI" CssClass="form-control form-control-md" runat="server"></asp:TextBox>
-									</div>				
 									<div class="col-2">
 										<button runat="server" id="Button5" class="btn btn-block btn-outline-info btn-md" onserverclick="BtnSearch_Click" title="Search">
 										Search
 										</button>							
 									</div>	
 									<div class="col-3">
-										<a runat="server" href="./add.aspx" id="btnAddName" class="btn btn-block btn-info btn-md">Add Name</a>
+										<a runat="server" href="./add.aspx" id="btnAddName" class="btn btn-block btn-info btn-md">Add</a>
 									</div>	
 								</div>
 							</div>

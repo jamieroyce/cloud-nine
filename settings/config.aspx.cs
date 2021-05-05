@@ -67,63 +67,20 @@ public partial class _Default : System.Web.UI.Page
 	{
 
 		ErrorText.Text = "";
-		Title = "Setup Users";
+		Title = "Configure Settings";
 		HeadText.Text = Title;
 		searchText = "";
 		searchCol = "";
 		searchWE = "";
-
-		if (Session["org"] == "Day") {
-			OrgText.Text = Session["org"].ToString();
-			day.Attributes["class"] += " active";		
-			fdn.Attributes.Add("class", fdn.Attributes["class"].ToString().Replace("active", ""));		      
-			cmb.Attributes.Add("class", cmb.Attributes["class"].ToString().Replace("active", ""));		   
-		} else if(Session["org"] == "Fdn"){
-			OrgText.Text = Session["org"].ToString();
-			day.Attributes.Add("class", day.Attributes["class"].ToString().Replace("active", ""));		      
-			fdn.Attributes["class"] += " active";		
-			cmb.Attributes.Add("class", cmb.Attributes["class"].ToString().Replace("active", ""));		      
-		} else {
-			OrgText.Text = "Day";
-			day.Attributes["class"] += " active";		
-			fdn.Attributes.Add("class", fdn.Attributes["class"].ToString().Replace("active", ""));		      
-			cmb.Attributes.Add("class", cmb.Attributes["class"].ToString().Replace("active", ""));		   
-		}
 		
         if (ViewState["SortExpression"] != null)
 			ViewState["SortExpression"] = null;
 		
 		GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
+		GridView_Load(GridViewExpectancy, DAL.getExpectancy(OrgText.Text)); 
 		
 	}
 
-	public void Day_Click(Object sender, EventArgs e)
-	{
-		if(ViewState["SortExpression"] != null)
-			ViewState["SortExpression"] = null;
-
-		OrgText.Text = "Day";
-		Session["org"] = OrgText.Text;
-		day.Attributes["class"] += " active";		
-		fdn.Attributes.Add("class", fdn.Attributes["class"].ToString().Replace("active", ""));		      
-		cmb.Attributes.Add("class", cmb.Attributes["class"].ToString().Replace("active", ""));		      
-		GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
-        
-    }
-
-	public void Fdn_Click(Object sender, EventArgs e)
-	{
-		if(ViewState["SortExpression"] != null)
-			ViewState["SortExpression"] = null;
-
-		OrgText.Text = "Fdn";
-		Session["org"] = OrgText.Text;
-		day.Attributes.Add("class", day.Attributes["class"].ToString().Replace("active", ""));		      
-		fdn.Attributes["class"] += " active";		
-		cmb.Attributes.Add("class", cmb.Attributes["class"].ToString().Replace("active", ""));		      
-		GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
-        
-    }
 		
 	private void GridView_Load(GridView grdview, DataTable dt)
 	{	
@@ -195,6 +152,47 @@ public partial class _Default : System.Web.UI.Page
 		
     }
 
+	public void btnAddQuota_Click(Object sender, EventArgs e)
+	{				
+		
+		Button clickedButton = (Button)sender;
+		if ( clickedButton != null)
+		{
+
+			string type = "expectancy";	
+			string area = String.Format("{0}", 		Request.Form["shortID"]);	
+			string quota = String.Format("{0}", 	Request.Form["quotaID2"]);	
+					
+			using(SqlConnection connection = databaseConnection.CreateSqlConnection())
+			{
+				String query = "INSERT into lookup(type, desc1, desc2) "
+							 + "VALUES (@type, @area, @quota)";
+							 
+				using(SqlCommand command = new SqlCommand(query, connection))
+				{
+
+					command.Parameters.AddWithValue("@type",			type);
+					command.Parameters.AddWithValue("@area",			area);
+					command.Parameters.AddWithValue("@quota",			quota);
+					command.Parameters.AddWithValue("@org",				org);
+
+					connection.Open();
+					int result = command.ExecuteNonQuery();
+
+					ClearAddRegModal();
+					
+					// Check Error
+					if(result < 0){
+						ErrorText.Text = "Error inserting data into Database!";
+					}
+				}
+			}
+		} 
+
+		GridView_Load(GridViewExpectancy, DAL.getExpectancy(OrgText.Text));  
+		
+    }
+
 	protected void DeleteRow(object sender, EventArgs e)
 	{
 		int rowIndex = Convert.ToInt32(((sender as LinkButton).NamingContainer as GridViewRow).RowIndex);
@@ -202,7 +200,18 @@ public partial class _Default : System.Web.UI.Page
 		string vId = row.Cells[0].Text;		
 		RegistrarID.Text = vId; 
 		
-		ClientScript.RegisterStartupScript(this.GetType(), "Pop", "ConfirmDeleteModal();", true);
+		ClientScript.RegisterStartupScript(this.GetType(), "Pop", "ConfirmDeleteRegModal();", true);
+		
+	}
+
+	protected void DeleteQuota(object sender, EventArgs e)
+	{
+		int rowIndex = Convert.ToInt32(((sender as LinkButton).NamingContainer as GridViewRow).RowIndex);
+        GridViewRow row = (GridViewRow)(sender as Control).Parent.Parent;
+		string vId = row.Cells[0].Text;		
+		QuotaID.Text = vId; 
+		
+		ClientScript.RegisterStartupScript(this.GetType(), "Pop", "ConfirmDeleteQuotaModal();", true);
 		
 	}
 
@@ -233,6 +242,33 @@ public partial class _Default : System.Web.UI.Page
 		} 
     }
 
+	public void btnDeleteExpectancy_Click(Object sender, EventArgs e)
+	{				
+		Button clickedButton = (Button)sender;
+		if ( clickedButton != null)
+		{
+			string id = String.Format("{0}", 		Request.Form["QuotaID"]);	
+			string sqlCommandStatement = String.Format("DELETE FROM lookup WHERE id='{0}'", id );									
+			try
+			{		
+				using (SqlConnection conn = databaseConnection.CreateSqlConnection())
+				{
+				conn.Open();
+				using (SqlCommand Cmd = new SqlCommand(sqlCommandStatement, conn))
+				{
+					Cmd.ExecuteNonQuery();						
+				}
+				conn.Close();
+				}
+			}
+			catch (SqlException ex)
+			{
+				ErrorText.Text = ex.ToString();
+			}
+			GridView_Load(GridViewExpectancy, DAL.getExpectancy(OrgText.Text));  
+		}
+	}
+
 	protected void text_change_reg(object sender, EventArgs e)
 	{
 		ErrorText.Text = "";
@@ -246,15 +282,17 @@ public partial class _Default : System.Web.UI.Page
 		
 	}
 
-	protected void Selection_Change_Org(object sender, EventArgs e)
+	protected void text_change_desc2(object sender, EventArgs e)
 	{
-		DropDownList ddlOrg = sender as DropDownList;
+		ErrorText.Text = "";
+		TextBox text = sender as TextBox;
 		GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
 		string id = gvRow.Cells[0].Text;
-		string sqlCommandStatement = "UPDATE listReg SET post = @TEXT WHERE id=@ID";
-		SqlCmd(sqlCommandStatement, id, ddlOrg.Text);	
+		string sqlCommandStatement =  string.Format("UPDATE lookup SET desc2 = @TEXT WHERE id=@ID", text.ID);
+		SqlCmd(sqlCommandStatement, id, text.Text);		
 		// ErrorText.Text = "sqlCommandStatement=" + sqlCommandStatement + "<BR/>";
-		GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
+		GridView_Load(GridViewExpectancy, DAL.getExpectancy(OrgText.Text));  
+		
 	}
 
 	protected void Selection_Change_Area(object sender, EventArgs e)
@@ -292,6 +330,7 @@ public partial class _Default : System.Web.UI.Page
 		ViewState["SortExpression"] = e.SortExpression.ToString();
 		GridView gv = sender as GridView;
 		GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
+		GridView_Load(GridViewExpectancy, DAL.getExpectancy(OrgText.Text));  
 		
 	}
 	

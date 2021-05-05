@@ -1395,7 +1395,7 @@ public partial class _Default : System.Web.UI.Page
 			}			
 			//if day fdn combined handling
 			if(OrgText.Text=="Combined"){
-				Card1.Text = ResultBothInv;		
+				CardConfirmed.Text = ResultBothInv;		
 				CardConfirmed.Text = ResultBothConf;		
 				CardInConfirmed.Text = ResultBothIn;	
 				CardInConfirmedA.Text = ResultBothOn;
@@ -1410,7 +1410,7 @@ public partial class _Default : System.Web.UI.Page
 				CardInConfirmedFdnA.Text = ResultFdnOn + " (Fdn)";
 				
 			} else if (OrgText.Text=="Day"){
-				Card1.Text = ResultDayInv ;				
+				CardConfirmed.Text = ResultDayInv ;				
 				CardConfirmed.Text = ResultDayConf ;	
 				CardInConfirmed.Text = ResultDayIn ;				
 				CardInConfirmedA.Text = ResultDayOn ;
@@ -1425,7 +1425,7 @@ public partial class _Default : System.Web.UI.Page
 				CardInConfirmedFdnA.Text = "";				
 				
 			} else if (OrgText.Text=="Fdn"){
-				Card1.Text = ResultFdnInv ;	
+				CardConfirmed.Text = ResultFdnInv ;	
 				CardConfirmed.Text = ResultFdnConf ;
 				CardInConfirmed.Text = ResultFdnIn ;	
 				CardInConfirmedA.Text = ResultFdnOn ;

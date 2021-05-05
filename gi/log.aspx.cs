@@ -71,8 +71,8 @@ public partial class _Default : System.Web.UI.Page
 	public void StartingPage()
 	{
 		HeadText.Text = "Combined GI Grid";
-		HeaderText.Text = "Gross Income";
-		Title = "Gross Income";
+		HeaderText.Text = "Production Board";
+		Title = "Production Board";
 
 		OrgText.Visible = true;
 		searchText = "";
@@ -170,40 +170,6 @@ public partial class _Default : System.Web.UI.Page
 			}
 		}
 		
-		if(OrgText.Text=="Day"){
-		
-			resignFdn.Text = "";
-			cfFdn.Text = "";
-			arrivalFdn.Text = "";
-			fsmFdn.Text = "";
-			prospectingFdn.Text = "";
-			otherFdn.Text = "";
-		
-		} else if (OrgText.Text=="Fdn"){
-
-			resignDay.Text = "";
-			cfDay.Text = "";
-			arrivalDay.Text = "";
-			fsmDay.Text = "";
-			prospectingDay.Text = "";
-			otherDay.Text = "";
-			
-		} else if (OrgText.Text=="Combined"){
-
-			resignFdn.Text += " (Fdn)";
-			cfFdn.Text += " (Fdn)";
-			arrivalFdn.Text += " (Fdn)";
-			fsmFdn.Text += " (Fdn)";
-			prospectingFdn.Text += " (Fdn)";
-			otherFdn.Text += " (Fdn)";
-
-			resignDay.Text += " (Day)";
-			cfDay.Text += " (Day)";
-			arrivalDay.Text += " (Day)";
-			fsmDay.Text += " (Day)";
-			prospectingDay.Text += " (Day)";
-			otherDay.Text += " (Day)";
-		}
 	}
 	
 	public void Day_Click(Object sender, EventArgs e)
@@ -224,7 +190,7 @@ public partial class _Default : System.Web.UI.Page
 		else {
 			DataGrid_Load(DAL.reg_log(HeadText.Text, OrgText.Text), "reg");
 			DataGrid_LoadFPPP(DAL.FilterPP(OrgText.Text, "all"), "reg");
-			HeaderText.Text = "Gross Income";
+			HeaderText.Text = "Production Board";
 		}		
 		// UpdatePanels();
     }
@@ -247,7 +213,7 @@ public partial class _Default : System.Web.UI.Page
 		else {
 			DataGrid_Load(DAL.reg_log(HeadText.Text, OrgText.Text), "reg");
 			DataGrid_LoadFPPP(DAL.FilterPP(OrgText.Text, "all"), "reg");
-			HeaderText.Text = "Gross Income";
+			HeaderText.Text = "Production Board";
 		}		
 		// UpdatePanels();
     }
@@ -270,7 +236,7 @@ public partial class _Default : System.Web.UI.Page
 		else {
 			DataGrid_Load(DAL.reg_log(HeadText.Text, OrgText.Text), "reg");
 			DataGrid_LoadFPPP(DAL.FilterPP(OrgText.Text, "all"), "reg");
-			HeaderText.Text = "Gross Income";
+			HeaderText.Text = "Production Board";
 		}		
 		// UpdatePanels();
     }
@@ -286,7 +252,7 @@ public partial class _Default : System.Web.UI.Page
 	public void FilterArea(string v)
 	{
 
-		HeaderText.Text = "Gross Income";
+		HeaderText.Text = "Production Board";
 
 		if(v=="Purif"){
 			string s = boxPurif.Attributes["class"].ToString();
@@ -390,7 +356,7 @@ public partial class _Default : System.Web.UI.Page
 		else {
 			DataGrid_Load(DAL.reg_log(HeadText.Text, OrgText.Text), "reg");
 			DataGrid_LoadFPPP(DAL.FilterPP(OrgText.Text, "all"), "reg");
-			HeaderText.Text = "Gross Income";
+			HeaderText.Text = "Production Board";
 			searchText = "";
 			searchCol = "";
 		}		
@@ -423,7 +389,7 @@ public partial class _Default : System.Web.UI.Page
     protected void LinkButton_Command(Object sender, EventArgs e) 
     {
 		var v = ((LinkButton)sender).CommandArgument;
-		HeaderText.Text = "Gross Income";
+		HeaderText.Text = "Production Board";
 		
 		//ADD THE button pressed LOOK TO THE warning BOX
 		if(v=="Resign"){
@@ -533,7 +499,7 @@ public partial class _Default : System.Web.UI.Page
 		else {
 			DataGrid_Load(DAL.reg_log(HeadText.Text, OrgText.Text), "reg");
 			DataGrid_LoadFPPP(DAL.FilterPP(OrgText.Text, "all"), "reg");
-			HeaderText.Text = "Gross Income";
+			HeaderText.Text = "Production Board";
 		}		
 
 	}
@@ -542,7 +508,7 @@ public partial class _Default : System.Web.UI.Page
     {
 		var v = ((LinkButton)sender).CommandArgument;
 		filter = (string)v;
-		HeaderText.Text = "Gross Income";
+		HeaderText.Text = "Production Board";
 		FilterArea(v);
 
 	}
@@ -1009,7 +975,7 @@ public partial class _Default : System.Web.UI.Page
 			else {
 				DataGrid_Load(DAL.reg_log(HeadText.Text, OrgText.Text), "reg");
 				DataGrid_LoadFPPP(DAL.FilterPP(OrgText.Text, "all"), "reg");
-				HeaderText.Text = "Gross Income";
+				HeaderText.Text = "Production Board";
 			}		
 			
 			UpdatePanels();
@@ -1111,7 +1077,7 @@ public partial class _Default : System.Web.UI.Page
 			else {
 				DataGrid_Load(DAL.reg_log(HeadText.Text, OrgText.Text), "reg");
 				DataGrid_LoadFPPP(DAL.FilterPP(OrgText.Text, "all"), "reg");
-				HeaderText.Text = "Gross Income";
+				HeaderText.Text = "Production Board";
 			}		
 			
 			UpdatePanels();
@@ -1442,54 +1408,11 @@ public partial class _Default : System.Web.UI.Page
 			}
 
 
-			//if day fdn combined handling
-			if (OrgText.Text=="Combined"){
-				Card1.Text = ResultBothInv;		
-				CardConfirmed.Text = ResultBothConf;		
-				CardInConfirmed.Text = ResultBothIn;	
-				CardInConfirmedA.Text = ResultBothOn;
+			Card1.Text = ResultBothInv;		
+			CardConfirmed.Text = ResultBothConf;		
+			CardInConfirmed.Text = ResultBothIn;	
+			CardInConfirmedA.Text = ResultBothOn;
 				
-				CardInvoicedDay.Text = ResultDayInv + " (Day)";				
-				CardInvoicedFdn.Text = ResultFdnInv + " (Fdn)";				
-				CardConfirmedDay.Text = ResultDayConf + " (Day)";		
-				CardConfirmedFdn.Text = ResultFdnConf + " (Fdn)";				
-				CardInConfirmedDay.Text = ResultDayIn + " (Day)";				
-				CardInConfirmedFdn.Text = ResultFdnIn + " (Fdn)";
-				CardInConfirmedDayA.Text = ResultDayOn + " (Day)";
-				CardInConfirmedFdnA.Text = ResultFdnOn + " (Fdn)";
-				
-			} else if (OrgText.Text=="Day"){
-				Card1.Text = ResultDayInv ;				
-				CardConfirmed.Text = ResultDayConf ;	
-				CardInConfirmed.Text = ResultDayIn ;				
-				CardInConfirmedA.Text = ResultDayOn ;
-				
-				CardInvoicedDay.Text = "";				
-				CardInvoicedFdn.Text = "";				
-				CardConfirmedDay.Text = "";				
-				CardConfirmedFdn.Text = "";				
-				CardInConfirmedDay.Text = "";				
-				CardInConfirmedFdn.Text = "";				
-				CardInConfirmedDayA.Text = "";				
-				CardInConfirmedFdnA.Text = "";				
-				
-			} else if (OrgText.Text=="Fdn"){
-				Card1.Text = ResultFdnInv ;	
-				CardConfirmed.Text = ResultFdnConf ;
-				CardInConfirmed.Text = ResultFdnIn ;	
-				CardInConfirmedA.Text = ResultFdnOn ;
-				
-				CardInvoicedDay.Text = "";				
-				CardInvoicedFdn.Text = "";				
-				CardConfirmedDay.Text = "";				
-				CardConfirmedFdn.Text = "";				
-				CardInConfirmedDay.Text = "";				
-				CardInConfirmedFdn.Text = "";				
-				CardInConfirmedDayA.Text = "";				
-				CardInConfirmedFdnA.Text = "";				
-				
-			}
-
 			if(query.Any()){
 				DataTable t2 = query.CopyToDataTable();
 				GridView4.DataSource = t2;
