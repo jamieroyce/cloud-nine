@@ -33,17 +33,18 @@ public class dal
         return Data_Load(String.Format("SELECT * from listReg where post = '{0}' ", org), "reg");
     }
 
-    public DataTable getRegList(string org)
+    public DataTable getRegList(string org = null)
     {
-        if (org == "Combined")
+        if (org == "Combined" || org == null)
             return Data_Load(String.Format("SELECT * from listReg Order by short_name"), "reg");
-        else
+        else 
             return Data_Load(String.Format("SELECT * from listReg where post = '{0}' order by short_name ", org), "reg");
     }
 
-    public DataTable getExpectancy(string org)
+    public DataTable getExpectancy(string org = null)
     {
-        return Data_Load(String.Format("SELECT * from lookup where type = 'expectancy' and desc3 = '{0}' order by id ", org), "reg");
+        return Data_Load(String.Format("SELECT * from lookup where type = 'expectancy' order by id "), "reg");
+
     }
 
     public DataTable getEvents(string untildate = null)

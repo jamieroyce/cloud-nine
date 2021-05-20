@@ -83,8 +83,8 @@
 		</a>
 	  </li>	  
 	  <li class="nav-item">
-		<a href="../settings/registrars.aspx" class="nav-link">	  
-		  <i class="fa fa-cog fa-lg text-info" title="Setup Registrars"></i>
+		<a href="../settings/config.aspx" class="nav-link">	  
+		  <i class="fa fa-cog fa-lg text-info" title="Configure Settings"></i>
 		</a>
 	  </li>	  
 	  </ul>
@@ -96,7 +96,7 @@
 	<aside class="main-sidebar sidebar-light-primary elevation-4">
 		<!-- Brand Logo -->
 		<a href="../home.aspx" class="brand-link">
-		  <img src="../img/scn_sm.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+		  <img src="../img/scn_sm.png" alt="AdminLTE Logo" class="brand-image img-circle"
 			   style="opacity: .8">
 		  <span class="brand-text font-weight-light">FLOW</span>
 		</a>
@@ -606,7 +606,7 @@
 						<div class="card">		
 							<div class="card-body">
 								<div class="row">
-									<div class="col-4">
+									<div class="col-7">
 										<asp:TextBox ID="txtGI" CssClass="form-control form-control-md" runat="server"></asp:TextBox>
 									</div>				
 									<div class="col-3">
@@ -618,13 +618,12 @@
 										<asp:ListItem Value="Line"> Line </asp:ListItem>
 										</asp:DropDownList>  
 									</div>				
-									<div class="col-2">
-										<button runat="server" id="Button5" class="btn btn-block btn-outline-info btn-md" onserverclick="BtnSearch_Click" title="Search">
-										Search
+									<div class="col-1">
+										<button runat="server" id="Button5" class="btn btn-block btn-outline-info btn-md fa fa-search" onserverclick="BtnSearch_Click" title="search">
 										</button>							
 									</div>	
-									<div class="col-3">
-										<a runat="server" href="./add.aspx" id="btnAddName" class="btn btn-block btn-info btn-md">Add</a>
+									<div class="col-1">
+										<a runat="server" href="./add.aspx" id="btnAddName" class="btn btn-block btn-outline-info btn-md fa fa-plus"></a>
 									</div>	
 								</div>
 							</div>

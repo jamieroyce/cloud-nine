@@ -68,7 +68,7 @@ public partial class _Default : System.Web.UI.Page
 
 		ErrorText.Text = "";
 		Title = "Configure Settings";
-		HeadText.Text = Title;
+		HeadText.Text = "Configure Settings";
 		searchText = "";
 		searchCol = "";
 		searchWE = "";
@@ -76,8 +76,8 @@ public partial class _Default : System.Web.UI.Page
         if (ViewState["SortExpression"] != null)
 			ViewState["SortExpression"] = null;
 		
-		GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
-		GridView_Load(GridViewExpectancy, DAL.getExpectancy(OrgText.Text)); 
+		GridView_Load(GridViewReg, DAL.getRegList()); 
+		GridView_Load(GridViewExpectancy, DAL.getExpectancy()); 
 		
 	}
 
@@ -101,8 +101,7 @@ public partial class _Default : System.Web.UI.Page
 	public void ClearAddRegModal()
 	{
 
-		regnameID.Text = "";
-		postID.Text = "";
+        regnameID.Text = "";
 		
 	} 
 	
@@ -116,7 +115,6 @@ public partial class _Default : System.Web.UI.Page
 			string fullName = String.Format("{0}", 		Request.Form["regnameID"]);	
 			string shortName = String.Format("{0}", 	Request.Form["shortnameID"]);	
 			string area = String.Format("{0}", 			Request.Form["area"]);	
-			string post = String.Format("{0}", 			Request.Form["postID"]);	
 			
 			CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
 			TextInfo textInfo = cultureInfo.TextInfo;
@@ -124,15 +122,14 @@ public partial class _Default : System.Web.UI.Page
 					
 			using(SqlConnection connection = databaseConnection.CreateSqlConnection())
 			{
-				String query = "INSERT into listReg(full_name, short_name, post, area) "
-							 + "VALUES (@full_name, @short_name, @post, @area)";
+				String query = "INSERT into listReg(full_name, short_name, area) "
+							 + "VALUES (@full_name, @short_name, @area)";
 							 
 				using(SqlCommand command = new SqlCommand(query, connection))
 				{
 
 					command.Parameters.AddWithValue("@full_name",		fullName);
 					command.Parameters.AddWithValue("@short_name",		shortName);
-					command.Parameters.AddWithValue("@post",			post);
 					command.Parameters.AddWithValue("@area",			area);
 
 					connection.Open();
@@ -148,7 +145,7 @@ public partial class _Default : System.Web.UI.Page
 			}
 		} 
 
-		GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
+		GridView_Load(GridViewReg, DAL.getRegList()); 
 		
     }
 
@@ -174,7 +171,6 @@ public partial class _Default : System.Web.UI.Page
 					command.Parameters.AddWithValue("@type",			type);
 					command.Parameters.AddWithValue("@area",			area);
 					command.Parameters.AddWithValue("@quota",			quota);
-					command.Parameters.AddWithValue("@org",				org);
 
 					connection.Open();
 					int result = command.ExecuteNonQuery();
@@ -189,7 +185,7 @@ public partial class _Default : System.Web.UI.Page
 			}
 		} 
 
-		GridView_Load(GridViewExpectancy, DAL.getExpectancy(OrgText.Text));  
+		GridView_Load(GridViewExpectancy, DAL.getExpectancy());  
 		
     }
 
@@ -238,16 +234,16 @@ public partial class _Default : System.Web.UI.Page
 			{
 				ErrorText.Text = ex.ToString();
 			}
-			GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
+			GridView_Load(GridViewReg, DAL.getRegList()); 
 		} 
     }
 
-	public void btnDeleteExpectancy_Click(Object sender, EventArgs e)
+	public void btnDeleteQuota_Click(Object sender, EventArgs e)
 	{				
 		Button clickedButton = (Button)sender;
 		if ( clickedButton != null)
 		{
-			string id = String.Format("{0}", 		Request.Form["QuotaID"]);	
+			string id = String.Format("{0}", 		Request.Form["RegistrarID"]);	
 			string sqlCommandStatement = String.Format("DELETE FROM lookup WHERE id='{0}'", id );									
 			try
 			{		
@@ -265,9 +261,9 @@ public partial class _Default : System.Web.UI.Page
 			{
 				ErrorText.Text = ex.ToString();
 			}
-			GridView_Load(GridViewExpectancy, DAL.getExpectancy(OrgText.Text));  
-		}
-	}
+			GridView_Load(GridViewExpectancy, DAL.getExpectancy());  
+		} 
+    }
 
 	protected void text_change_reg(object sender, EventArgs e)
 	{
@@ -278,7 +274,7 @@ public partial class _Default : System.Web.UI.Page
 		string sqlCommandStatement =  string.Format("UPDATE listReg SET {0} = @TEXT WHERE id=@ID", text.ID);
 		SqlCmd(sqlCommandStatement, id, text.Text);		
 		// ErrorText.Text = "sqlCommandStatement=" + sqlCommandStatement + "<BR/>";
-		GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
+		GridView_Load(GridViewReg, DAL.getRegList()); 
 		
 	}
 
@@ -291,8 +287,18 @@ public partial class _Default : System.Web.UI.Page
 		string sqlCommandStatement =  string.Format("UPDATE lookup SET desc2 = @TEXT WHERE id=@ID", text.ID);
 		SqlCmd(sqlCommandStatement, id, text.Text);		
 		// ErrorText.Text = "sqlCommandStatement=" + sqlCommandStatement + "<BR/>";
-		GridView_Load(GridViewExpectancy, DAL.getExpectancy(OrgText.Text));  
+		GridView_Load(GridViewExpectancy, DAL.getExpectancy());  
 		
+	}
+
+	protected void Selection_Change_Desc1(object sender, EventArgs e)
+	{
+		DropDownList desc1 = sender as DropDownList;
+		GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+		string id = gvRow.Cells[0].Text;
+		string sqlCommandStatement = "UPDATE lookup SET desc1 = @TEXT WHERE id=@ID";
+		SqlCmd(sqlCommandStatement, id, desc1.Text);		
+		GridView_Load(GridViewExpectancy, DAL.getExpectancy());  
 	}
 
 	protected void Selection_Change_Area(object sender, EventArgs e)
@@ -302,7 +308,7 @@ public partial class _Default : System.Web.UI.Page
 		string id = gvRow.Cells[0].Text;
 		string sqlCommandStatement = "UPDATE listReg SET area = @TEXT WHERE id=@ID";
 		SqlCmd(sqlCommandStatement, id, ddlArea.Text);	
-		GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
+		GridView_Load(GridViewReg, DAL.getRegList()); 
 	}
 	
 	protected void Selection_Change_Regno(object sender, EventArgs e)
@@ -314,7 +320,7 @@ public partial class _Default : System.Web.UI.Page
 		SqlCmd(sqlCommandStatement, id, short_name.Text);		
 		// ErrorText.Text = "UPDATE listReg SET " + id + " = " + short_name.Text + "where ID = " + id + "<BR/>";
 		// ErrorText.Text = "short_name.Text=" + short_name.Text + "<BR/>";
-		GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
+		GridView_Load(GridViewReg, DAL.getRegList()); 
 	}
 	
 	protected void TaskGridView_Sorting(object sender, GridViewSortEventArgs e)
@@ -329,8 +335,8 @@ public partial class _Default : System.Web.UI.Page
 
 		ViewState["SortExpression"] = e.SortExpression.ToString();
 		GridView gv = sender as GridView;
-		GridView_Load(GridViewReg, DAL.getRegList(OrgText.Text)); 
-		GridView_Load(GridViewExpectancy, DAL.getExpectancy(OrgText.Text));  
+		GridView_Load(GridViewReg, DAL.getRegList()); 
+		GridView_Load(GridViewExpectancy, DAL.getExpectancy());  
 		
 	}
 	

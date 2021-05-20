@@ -197,16 +197,16 @@ public partial class _Default : System.Web.UI.Page
 		string vId = row.Cells[0].Text;		
 		RegistrarID.Text = vId; 
 		
-		ClientScript.RegisterStartupScript(this.GetType(), "Pop", "ConfirmDeleteRegModal();", true);
+		ClientScript.RegisterStartupScript(this.GetType(), "Pop", "ConfirmDeleteModal();", true);
 		
 	}
 
-	public void btnDeleteExpectancy_Click(Object sender, EventArgs e)
+	public void btnDeleteReg_Click(Object sender, EventArgs e)
 	{				
 		Button clickedButton = (Button)sender;
 		if ( clickedButton != null)
 		{
-			string id = String.Format("{0}", 		Request.Form["QuotaID"]);	
+			string id = String.Format("{0}", 		Request.Form["RegistrarID"]);	
 			string sqlCommandStatement = String.Format("DELETE FROM lookup WHERE id='{0}'", id );									
 			try
 			{		

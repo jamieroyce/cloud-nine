@@ -67,7 +67,7 @@ public partial class _Default : System.Web.UI.Page
 	{
 
 		ErrorText.Text = "";
-		Title = "Setup Users";
+		Title = "Setup";
 		HeadText.Text = Title;
 		searchText = "";
 		searchCol = "";
