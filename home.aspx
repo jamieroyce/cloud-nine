@@ -13,7 +13,7 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="refresh" content="300">
 	
-	<title>FLOW</title>
+	<title>Mind Cloud</title>
 
 		<link rel="stylesheet" href="css/all.min.css" type="text/css"  />
 		<link rel="stylesheet" href="css/font-awesome.min.css">
