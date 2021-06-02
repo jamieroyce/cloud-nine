@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ Page Language="C#" Trace="False" enableEventValidation="false" MaintainScrollPositionOnPostback="false" AutoEventWireup="true" CodeFile="log.aspx.cs" Inherits="_Default" Debug="true" %>
+<%@ Page Language="C#" Trace="False" enableEventValidation="false" MaintainScrollPositionOnPostback="false" AutoEventWireup="true" CodeFile="payments.aspx.cs" Inherits="_Default" Debug="true" %>
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"  
     Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
@@ -96,9 +96,9 @@
 	<aside class="main-sidebar sidebar-light-primary elevation-4">
 		<!-- Brand Logo -->
 		<a href="../home.aspx" class="brand-link">
-		  <img src="../img/scn_sm.png" alt="AdminLTE Logo" class="brand-image img-circle"
+		  <img src="../assets/img/logo.png" alt="Cloud Nine Logo" class="brand-image img-circle"
 			   style="opacity: .8">
-		  <span class="brand-text font-weight-light">FLOW</span>
+		  <span class="brand-text font-weight-heavy">Cloud Nine</span>
 		</a>
 
 	  <div class="btn-group btn-group-sm btn-block" hidden>

@@ -426,7 +426,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero h1 {
-  margin: 0 0 0 -2px;
+  margin: 20px 0 0 -2px;
   font-size: 48px;
   font-weight: 700;
   line-height: 56px;
@@ -452,6 +452,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.5s;
   border: 2px solid #fff;
   color: #fff;
+  margin-bottom: 15%;
 }
 
 #hero .btn-get-started:hover {
@@ -467,13 +468,14 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
   #hero {
-    text-align: center;
+    text-align: left;
   }
   #hero .container {
     padding-top: 40px;
   }
   #hero h1 {
     font-size: 28px;
+    text-align: left;
     line-height: 36px;
   }
   #hero h2 {

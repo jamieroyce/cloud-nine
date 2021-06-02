@@ -41,7 +41,11 @@
 
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
-
+    <style>
+        body {
+            font: Poppins, sans-serif;
+        }
+    </style>
 </head>
 <body>
     <!--Main Navigation-->
@@ -57,6 +61,7 @@
         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
         <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
         <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+        <a href="#">Schedule A Demo</a>
       </div>
     </div>
   </section>
@@ -71,6 +76,9 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="Index.html">Home</a></li>
+                    <li> <asp:HyperLink runat="server" id="signout" onserverclick="BtnSignOut_Click" href="Index.html">Sign Out</asp:HyperLink></li>
+                   
+
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -80,13 +88,15 @@
     <!-- End Header -->
     <!-- ======= Hero Section ======= -->
     <div id="hero" class="bg-image shadow-2-strong">
-        <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
+        <div class="mask d-flex align-items-center h-100" style="background-color: white;">
+
             <div class="container" >
                 <div class="row justify-content-center">
                     <div class="col-xl-5 col-md-8">
                         <form runat="server" class="bg-white rounded shadow-5-strong p-5">
-
-
+                            <div style="text-align: center; margin-bottom: 10%">
+                                <img src="/assets/img/favicon.svg" alt="Cloud Nine Logo" height="25%" width="25%" align="center"/>
+                            </div>
                             <!-- Email input -->
                             <div class="form-outline mb-4">
                                 <asp:TextBox ID="userEmail" TextMode="Email" CssClass="form-control" runat="server"></asp:TextBox>

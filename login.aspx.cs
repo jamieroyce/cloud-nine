@@ -17,7 +17,7 @@ public partial class _Default : System.Web.UI.Page
 
     public void BtnLogin_Click(object sender, EventArgs e)
     {
-        Response.Redirect("gi/log.aspx");
+        Response.Redirect("account/dashboard.aspx");
 
         //DAL.Search_Addo(searchText, searchCol), "reg");
     }
