@@ -6,6 +6,18 @@ using System.Threading;
 
 public class dal
 {
+
+    public DataTable GetUser(string username, string password)
+    { 
+        return Data_Load(String.Format("select count(1) from Reg where name = '{0}' and password = '{1}' ", username, password), "reg");
+    }
+
+    public DataTable GetUsers()
+    {
+        return Data_Load(String.Format("select * from UserDetail "),"reg");
+    }
+
+
     public DataTable reg(string head, string org = null)
     {
         if (head == "all")

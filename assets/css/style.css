@@ -161,10 +161,10 @@ h1, h2, h3, h4, h5, h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: rgba(255, 255, 255, 0.75);
-  transition: all 0.5s;
-  z-index: 997;
-  height: 70px;
+    background: rgba(0, 0, 0, 0.83);
+    transition: all 0.5s;
+    z-index: 997;
+    height: 70px;
 }
 
 #header.fixed-top {
@@ -219,16 +219,16 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 5px;
 }
 
-.navbar a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 25px 15px 24px 15px;
-  font-size: 14px;
-  color: #0D0D0D;
-  white-space: nowrap;
-  transition: 0.3s;
-}
+    .navbar a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 25px 15px 24px 15px;
+        font-size: 14px;
+        color: #ffffff;
+        white-space: nowrap;
+        transition: 0.3s;
+    }
 
 .navbar a i {
   font-size: 12px;
