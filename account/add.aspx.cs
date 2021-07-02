@@ -239,34 +239,34 @@ public partial class _Default : System.Web.UI.Page
 					String query = "INSERT into reg(reg_cat_id, addo_id, name, status, service, amount, reg, bird_dog, line, rank, org, notes, appt, tm) "
 								 + "VALUES (@reg_cat_id, @addo_id, @name, @status, @service, @amount, @reg, @bird_dog, @line, @rank, @org, @notes, getdate(), getdate() )";
 								 
-					using(SqlCommand command = new SqlCommand(query, connection))
-					{
-						command.Parameters.AddWithValue("@reg_cat_id",		"LineUp");
-						command.Parameters.AddWithValue("@addo_id",			addoid);
-						command.Parameters.AddWithValue("@name",			name);
-						command.Parameters.AddWithValue("@status",			status);
-						command.Parameters.AddWithValue("@service",			service);
-						command.Parameters.AddWithValue("@amount",			amount );
-						command.Parameters.AddWithValue("@reg",				reg);
-						command.Parameters.AddWithValue("@bird_dog",		bird_dog);
-						command.Parameters.AddWithValue("@line",			line);
-						command.Parameters.AddWithValue("@rank",			rank);
-						command.Parameters.AddWithValue("@org",				org);
-						command.Parameters.AddWithValue("@notes",			notes);
+						using(SqlCommand command = new SqlCommand(query, connection))
+						{
+							command.Parameters.AddWithValue("@reg_cat_id",		"LineUp");
+							command.Parameters.AddWithValue("@addo_id",			addoid);
+							command.Parameters.AddWithValue("@name",			name);
+							command.Parameters.AddWithValue("@status",			status);
+							command.Parameters.AddWithValue("@service",			service);
+							command.Parameters.AddWithValue("@amount",			amount );
+							command.Parameters.AddWithValue("@reg",				reg);
+							command.Parameters.AddWithValue("@bird_dog",		bird_dog);
+							command.Parameters.AddWithValue("@line",			line);
+							command.Parameters.AddWithValue("@rank",			rank);
+							command.Parameters.AddWithValue("@org",				org);
+							command.Parameters.AddWithValue("@notes",			notes);
 
-						connection.Open();
+							connection.Open();
 
-						int result = command.ExecuteNonQuery();
+							int result = command.ExecuteNonQuery();
 
-						ClearAddoModal();
+							ClearAddoModal();
 						
-						StartingPage();
+							StartingPage();
 						
-						// Check Error
-						if(result < 0){
-							ErrorText.Text = "Error inserting data into Database!";
+							// Check Error
+							if(result < 0){
+								ErrorText.Text = "Error inserting data into Database!";
+							}
 						}
-					}
 				} 
 			} else {
 				

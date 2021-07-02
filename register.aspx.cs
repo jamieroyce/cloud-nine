@@ -7,10 +7,7 @@ public partial class _Default : System.Web.UI.Page
 {
 
 	dal DAL = new dal();
-	protected void CreateUser_Click(object sender, EventArgs e)
-	{
-
-
+	
         /*
         try
         {
@@ -61,6 +58,48 @@ public partial class _Default : System.Web.UI.Page
             statusmessage.text = result.errors.firstordefault();
         }
         */
-    }
+	public void CreateUser_Click(Object sender, EventArgs e)
+	{
+		string error = "";
+		string username = userName.Text;
+        string email = emailAddress.Text;
+		string password = userPassword.Text;
+		string passwordConfirm = confirmPassword.Text;
+        string type = ddlUserType.SelectedValue;
+        int userType = Int32.Parse(type);
 
+        if (password.Trim() == passwordConfirm.Trim())
+        {
+            using (SqlConnection connection = databaseConnection.CreateSqlConnection())
+            {
+                String query = "INSERT into UserDetail(name, email, password, userType) "
+                             + "VALUES (@name, @email, @password, @type)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@name", username);
+                    command.Parameters.AddWithValue("@email", email);
+                    command.Parameters.AddWithValue("@password", password);
+                    command.Parameters.AddWithValue("@type", userType);
+                    connection.Open();
+
+                    int result = command.ExecuteNonQuery();
+
+                    // Check Error
+                    if (result < 0)
+                    {
+                        ErrorText.Text = "Error inserting data into Database!";
+                    }
+                }                
+            }
+        }
+        else
+        {
+			error = "Passwords did not match";
+        }
+		ErrorText.Text = error;
+
+		Response.Redirect("account/dashboard.aspx");
+	}
 }

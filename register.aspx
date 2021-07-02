@@ -30,10 +30,13 @@
                             <div class="brand-wrapper">
                                 <img src="/assets/img/favicon.svg" alt="Cloud Nine Logo" height="25%" width="25%" align="center" />
                             </div>
-                            <p class="login-card-description">Create new account</p>
+                            <p class="login-card-description">Create CloudNine account</p>
 
                                 <div class="form-group">
                                     <asp:TextBox ID="userName" placeholder="User Name" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:TextBox ID="emailAddress" placeholder="Email" CssClass="form-control" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="form-group">
                                     <asp:TextBox ID="userPassword" placeholder="Password" TextMode="Password" CssClass="form-control" runat="server"></asp:TextBox>
@@ -46,10 +49,10 @@
                                     <div class="form-outline mb-4">
 	                        			<asp:DropDownList id="ddlUserType" placeholder="User Type" CssClass="form-control form-control-md" runat="server">
 										    <asp:ListItem Value=""> </asp:ListItem>
-										    <asp:ListItem Value="Tenant"> Tenant</asp:ListItem>
-										    <asp:ListItem Value="Owner"> Owner </asp:ListItem>
-										    <asp:ListItem Value="Property Manager"> Property Manager </asp:ListItem>
-										    <asp:ListItem Value="Service Pro"> Service Pro </asp:ListItem>
+										    <asp:ListItem Value="1"> Tenant</asp:ListItem>
+										    <asp:ListItem Value="2"> Owner </asp:ListItem>
+										    <asp:ListItem Value="3"> Property Manager </asp:ListItem>
+										    <asp:ListItem Value="4"> Service Pro </asp:ListItem>
 									    </asp:DropDownList>  
                                     </div>
 
