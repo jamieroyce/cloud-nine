@@ -1,3 +1,4 @@
+
 USE [cloud-nine]
 GO
 ALTER TABLE [dbo].[user] DROP CONSTRAINT [FK_32]
@@ -703,3 +704,24 @@ REFERENCES [dbo].[user_type] ([id])
 GO
 ALTER TABLE [dbo].[user] CHECK CONSTRAINT [FK_32]
 GO
+
+
+/*
+
+se [cloud-nine]
+GO
+insert into [user_type] values('tenant')
+GO
+insert into [user_type] values('owner')
+GO
+insert into [user_type] values('manager')
+GO
+insert into [user_type] values('servicepro')
+GO
+insert into [user] values('jamieroyce', 'jamieroyce78@gmail.com', 'test', 1)
+GO
+select * from [user]
+GO
+
+
+*/

@@ -90,81 +90,97 @@
 		  <span class="brand-text font-weight-light">CloudNine</span>
 		</a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-		<!-- Sidebar Menu -->
-		<nav class="mt-2">
-			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-			  <!-- Add icons to the links using the .nav-icon class
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
 				   with font-awesome or any other icon font library -->
-				   <li class="nav-item">
-					   <a href="gi/log.aspx" class="nav-link" >
-						   <i class="nav-icon fa fa-address-card text-info"></i>
-						   <p>
-							   Production Board
-							</p>
-						</a>
-						<hr>
-				<li class="nav-item">
-					<a href="gi/invoiced.aspx" class="nav-link">
-						<i class="fa fa-address-book-o nav-icon text-info"></i>
-						<p>Invoiced</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="gi/confirmed.aspx" class="nav-link">
-						<i class="fa fa-address-book-o nav-icon text-secondary"></i>
-						<p>Confirmed</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="gi/definite.aspx" class="nav-link">
-						<i class="fa fa-address-book-o nav-icon text-secondary"></i>
-						<p>Definite</p>
-					</a>
-				</li>			
-				<li class="nav-item">
-					<a href="gi/possible.aspx" class="nav-link">
-						<i class="fa fa-address-book-o nav-icon text-secondary"></i>
-						<p>Possible</p>
-					</a>
-				</li>			
-				<li class="nav-item">
-					<a href="gi/opencycle.aspx" class="nav-link">
-						<i class="fa fa-address-book-o nav-icon text-secondary"></i>
-						<p>Open Cycle</p>
-					</a>
-				</li>			
-				<li class="nav-item">
-					<a href="gi/now_prospects.aspx" class="nav-link">
-						<i class="fa fa-address-book-o nav-icon text-secondary"></i>
-						<p>Prospects</p>
-					</a>
-				</li>			
-				<li class="nav-item">
-					<a href="gi/archive.aspx" class="nav-link">
-						<i class="fa fa-archive nav-icon text-secondary"></i>
-						<p>Archive</p>
-					</a>
-				</li>	  
-				<li class="nav-item">
-					<a href="gi/graph.aspx" class="nav-link">
-						<i class="fa fa-pie-chart nav-icon text-info"></i>
-						<p>Income Report</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="gi/graphbyreg.aspx" class="nav-link">
-						<i class="fa fa-pie-chart nav-icon text-info"></i>
-						<p>Salesperson Report</p>
-					</a>
-				</li>	
-			</li>	  
-			</ul>
-		</nav>
-		<!-- /.sidebar-menu -->
-    </div>
-    <!-- Sidebar -->	</aside>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-usd text-info"></i>
+                            <p>
+                                Rent
+								<i class="right fa fa-angle-left"></i>
+
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="https://forms.gle/YMLo5VqtEymggcBP6" target="_blank" class="nav-link">
+                                    <i class="fa fa-folder-open nav-icon text-info"></i>
+                                    <p>Payment Summary</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://buy.stripe.com/14k7ux7E27zDgDKfYY" class="nav-link">
+                                    <i class="fa fa-usd nav-icon text-info"></i>
+                                    <p>Make a Payment</p>
+                                </a>
+                            </li>
+                            <a href="board.aspx" class="nav-link">
+                                <i class="nav-icon fa fa-address-card-o text-info"></i>
+                                <p>
+                                    Set up Auto Pay
+				 
+                                </p>
+                            </a>
+                            <li class="nav-item">
+                                <a href="https://forms.gle/rNeMdEWkRGxWDLQ88" target="_blank" class="nav-link">
+                                    <i class="fa fa-folder-open-o nav-icon text-info"></i>
+                                    <p>Reminder</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <hr>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-wrench text-info"></i>
+                                <p>
+                                    Maintenance
+								<i class="right fa fa-angle-left"></i>
+
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <a href="board.aspx" class="nav-link">
+                                    <i class="nav-icon fa fa-address-card-o text-info"></i>
+                                    <p>
+                                        Service Alert
+				 
+                                    </p>
+                                </a>
+                                <a href="board.aspx" class="nav-link">
+                                    <i class="nav-icon fa fa-address-card-o text-info"></i>
+                                    <p>
+                                        Emergency
+				 
+                                    </p>
+                                </a>
+                                <a href="board.aspx" class="nav-link">
+                                    <i class="nav-icon fa fa-address-card-o text-info"></i>
+                                    <p>
+                                        Tracking/Summary
+				 
+                                    </p>
+                                </a>
+                                <a href="board.aspx" class="nav-link">
+                                    <i class="nav-icon fa fa-address-card-o text-info"></i>
+                                    <p>
+                                        Service / Contracts
+				 
+                                    </p>
+                                </a>
+                            </ul>
+                        </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- Sidebar -->
+</aside>
 
   	<form id="form1" runat="server">
 
@@ -203,13 +219,11 @@
 												<asp:Label id="OrgText" visible="false" runat="server" Text="Combined" />												
 											</div>
 											<div class="col-6 text-info">
-												<h5>In</br>
-												In/Confirmed</br>
+												<h5>This Week</br>
 												Last Week</h5>
 											</div>
 											<div class="col-6 text-info">
 												<h5><asp:Label id="CardInvoiced" runat="server" /></br>
-												<asp:Label id="CardInConfirmed" runat="server" /></br>
 												<asp:Label id="LastWeekGI" runat="server" /></h5>
 											</div>
 										</div>
@@ -223,7 +237,7 @@
 											  <i class="fa fa-pie-chart text-info fa-lg"></i>
 											</a>
 											<a class="btn btn-outline-info" href="gi/log.aspx">
-											  View Log
+											  View
 											</a>
 										</div>										
 									</div>
